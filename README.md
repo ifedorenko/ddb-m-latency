@@ -11,3 +11,28 @@ Payload shape                     | Average time, ms | Payload description
 `payload_m_100wcu_277kb.json`     | 67.8             | map, 100 WCUs, 277 KB body size
 `payload_b_204wcu_277kb.json`     | 22.11            | binary, 204 WCUs, 277 KB body size
 
+
+## update 2022-02-15
+
+Tested `UpdateItem` latency to be 40.99 ms average over 100 test runs. Same setup as `PutItem` tests above. With `payload_m_100wcu_277kb.json` as original image and the following request body:
+
+```
+{
+    "TableName": "$TABLE_NAME",
+    "Key": {
+        "hk": { "N": "$key" }
+    },
+    "UpdateExpression": "SET payload.#42.a = :val",
+    "ExpressionAttributeValues": {
+      ":val": {"B": "$newVal"}
+    },
+    "ExpressionAttributeNames": {
+      "#42": "42"
+    },
+    "ReturnConsumedCapacity": "TOTAL"
+}
+```
+
+where `:newVal` is random 7 byte array (base64 encoded).
+
+Did not test this, but it appears that `GetItem`/`PutItem` with B payload will be slightly faster than `UpdateItem`.
