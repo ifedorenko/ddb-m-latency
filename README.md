@@ -16,6 +16,8 @@ CloudWatch Put latency during the test execution:
 ![test-2022-02-18-cloudwatch.png](test-2022-02-18-cloudwatch.png)
 
 
-## Test sources
+## Test sources (as of 2022-02-18)
 
-[]()
+* Test loop [testPutItem](https://github.com/ifedorenko/ddb-m-latency/blob/test-2022-02-18/src/main/java/adhoc/dynamodb_latency/DynamoDbLatencyOkhttp.kt#L48)
+* HTTPS POST [dynamoRest](https://github.com/ifedorenko/ddb-m-latency/blob/test-2022-02-18/src/main/java/adhoc/dynamodb_latency/DynamoDbRest.kt#L69)
+* Payload [payloadM_100_WCU](https://github.com/ifedorenko/ddb-m-latency/blob/test-2022-02-18/src/main/java/adhoc/dynamodb_latency/DynamoDbLatencyOkhttp.kt#L63)
